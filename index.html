@@ -127,12 +127,12 @@
                         <div class="mb-6">
                             <label class="block text-sm font-bold text-gray-700 mb-2">통증의 구체적인 느낌</label>
                             <div class="grid grid-cols-2 gap-2" id="painTypeContainer">
-                                <button type="button" onclick="selectPainType('sharp')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">⚡ 찌르거나 콕콕 쑤심</button>
-                                <button type="button" onclick="selectPainType('throbbing')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🔥 욱신거림 / 화끈거림</button>
-                                <button type="button" onclick="selectPainType('dull')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🪵 무겁고 뻐근함</button>
-                                <button type="button" onclick="selectPainType('squeezing')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">✊ 쥐어짜거나 누르는 듯함</button>
-                                <button type="button" onclick="selectPainType('itchy')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🐜 가렵거나 따끔거림</button>
-                                <button type="button" onclick="selectPainType('general_ache')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🤒 힘이 빠지고 전신이 아픔</button>
+                                <button type="button" onclick="selectPainType(event, 'sharp')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">⚡ 찌르거나 콕콕 쑤심</button>
+                                <button type="button" onclick="selectPainType(event, 'throbbing')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🔥 욱신거림 / 화끈거림</button>
+                                <button type="button" onclick="selectPainType(event, 'dull')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🪵 무겁고 뻐근함</button>
+                                <button type="button" onclick="selectPainType(event, 'squeezing')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">✊ 쥐어짜거나 누르는 듯함</button>
+                                <button type="button" onclick="selectPainType(event, 'itchy')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🐜 가렵거나 따끔거림</button>
+                                <button type="button" onclick="selectPainType(event, 'general_ache')" class="pain-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🤒 힘이 빠지고 전신이 아픔</button>
                             </div>
                         </div>
 
@@ -140,12 +140,12 @@
                         <div class="mb-8">
                             <label class="block text-sm font-bold text-gray-700 mb-2">증상이 발생하게 된 상황</label>
                             <div class="grid grid-cols-2 gap-2" id="situationContainer">
-                                <button type="button" onclick="selectSituation('sudden')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">⏱️ 예고 없이 갑자기 발생</button>
-                                <button type="button" onclick="selectSituation('exercise')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🏃 운동이나 격렬한 활동 중</button>
-                                <button type="button" onclick="selectSituation('food')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🍔 음식 섭취 또는 소화 중</button>
-                                <button type="button" onclick="selectSituation('trauma')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">💥 어딘가에 부딪히거나 넘어짐</button>
-                                <button type="button" onclick="selectSituation('morning')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🛌 아침에 일어난 직후</button>
-                                <button type="button" onclick="selectSituation('chronic')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">📅 며칠 전부터 조금씩 점진적</button>
+                                <button type="button" onclick="selectSituation(event, 'sudden')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">⏱️ 예고 없이 갑자기 발생</button>
+                                <button type="button" onclick="selectSituation(event, 'exercise')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🏃 운동이나 격렬한 활동 중</button>
+                                <button type="button" onclick="selectSituation(event, 'food')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🍔 음식 섭취 또는 소화 중</button>
+                                <button type="button" onclick="selectSituation(event, 'trauma')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">💥 어딘가에 부딪히거나 넘어짐</button>
+                                <button type="button" onclick="selectSituation(event, 'morning')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🛌 아침에 일어난 직후</button>
+                                <button type="button" onclick="selectSituation(event, 'chronic')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">📅 며칠 전부터 조금씩 점진적</button>
                             </div>
                         </div>
 
@@ -338,6 +338,20 @@
         </div>
     </main>
 
+    <!-- Custom Modal Alert (No-print) -->
+    <div id="customAlert" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 hidden no-print transition-all duration-300">
+        <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-all duration-200" id="customAlertBox">
+            <div class="flex items-center space-x-3 mb-4 text-red-600">
+                <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+                <h3 class="text-lg font-bold text-gray-900">안내 알림</h3>
+            </div>
+            <p id="customAlertMessage" class="text-sm text-gray-600 mb-6 leading-relaxed"></p>
+            <button onclick="closeCustomAlert()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-md">
+                확인
+            </button>
+        </div>
+    </div>
+
     <!-- Footer (No Print) -->
     <footer class="bg-gray-900 text-gray-400 py-6 text-center text-xs border-t border-gray-800 no-print">
         <p>© 2026 MediGuide AI. All rights reserved. Designed for study and GitHub pages showcase.</p>
@@ -357,14 +371,36 @@
         const step3 = document.getElementById('step3');
         const progressBar = document.getElementById('progressBar');
 
+        // Custom Modal Alert Logic
+        function showAlert(msg) {
+            document.getElementById('customAlertMessage').innerText = msg;
+            const alertBg = document.getElementById('customAlert');
+            const alertBox = document.getElementById('customAlertBox');
+            alertBg.classList.remove('hidden');
+            setTimeout(() => {
+                alertBox.classList.remove('scale-95');
+                alertBox.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeCustomAlert() {
+            const alertBg = document.getElementById('customAlert');
+            const alertBox = document.getElementById('customAlertBox');
+            alertBox.classList.remove('scale-100');
+            alertBox.classList.add('scale-95');
+            setTimeout(() => {
+                alertBg.classList.add('hidden');
+            }, 150);
+        }
+
         function goToStep(step) {
-            // Validation
+            // Validation using custom alert
             if (step === 2 && !selectedBodyPart) {
-                alert('아픈 신체 부위를 1개 선택해 주세요!');
+                showAlert('불편한 신체 부위를 1개 선택해 주세요!');
                 return;
             }
             if (step === 3 && (!selectedPainType || !selectedSituation)) {
-                alert('통증 느낌과 발생 상황을 모두 선택해 주세요!');
+                showAlert('통증의 느낌과 발생 상황을 모두 클릭하여 선택해 주세요!');
                 return;
             }
 
@@ -396,26 +432,29 @@
             selectedCard.classList.add('border-blue-600', 'bg-blue-50/50', 'ring-2', 'ring-blue-500');
         }
 
-        function selectPainType(type) {
+        // Fixed Cross-Browser Event Handlers (Passing e explicitly)
+        function selectPainType(e, type) {
             selectedPainType = type;
             document.querySelectorAll('.pain-btn').forEach(btn => {
                 btn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
                 btn.classList.add('border-gray-300', 'text-gray-700', 'bg-white');
             });
-            // Highlight target
-            event.currentTarget.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
-            event.currentTarget.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+            // Safely reference the clicked element across Firefox/Chrome
+            const target = e.currentTarget || e.target;
+            target.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
+            target.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
         }
 
-        function selectSituation(sit) {
+        function selectSituation(e, sit) {
             selectedSituation = sit;
             document.querySelectorAll('.sit-btn').forEach(btn => {
                 btn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
                 btn.classList.add('border-gray-300', 'text-gray-700', 'bg-white');
             });
-            // Highlight target
-            event.currentTarget.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
-            event.currentTarget.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+            // Safely reference the clicked element across Firefox/Chrome
+            const target = e.currentTarget || e.target;
+            target.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
+            target.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
         }
 
         function getSymptomText(key) {
@@ -622,27 +661,22 @@
 
         // Search hospital using GPS
         function searchHospitalGPS() {
-            // Get current recommended medical department (e.g., '신경과 또는 마취통증의학과' -> '신경과')
             const deptText = document.getElementById('recommendedDept').innerText || "내과";
             const firstDept = deptText.split(' 또는 ')[0].trim();
             const provider = getSelectedMapProvider();
             
             if (navigator.geolocation) {
-                // We request current location to confirm browser permission, then open search.
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         let searchUrl = '';
                         if (provider === 'kakao') {
-                            // Kakao Map utilizes browser coordinate to auto-center when redirecting
                             searchUrl = `https://map.kakao.com/?q=내주변+${encodeURIComponent(firstDept)}`;
                         } else {
-                            // Naver Map mobile query
                             searchUrl = `https://m.map.naver.com/search.naver?query=내주변+${encodeURIComponent(firstDept)}`;
                         }
                         window.open(searchUrl, '_blank');
                     },
                     (error) => {
-                        // If GPS permission is blocked, fall back to default map search which asks permission inside the map site
                         let searchUrl = provider === 'kakao' 
                             ? `https://map.kakao.com/?q=내주변+${encodeURIComponent(firstDept)}`
                             : `https://m.map.naver.com/search.naver?query=내주변+${encodeURIComponent(firstDept)}`;
@@ -650,7 +684,7 @@
                     }
                 );
             } else {
-                alert("이 브라우저는 위치 기반 탐색을 지원하지 않습니다. 아래 직접 입력창을 이용해주세요.");
+                showAlert("이 브라우저는 위치 기반 탐색을 지원하지 않습니다. 아래 직접 입력창을 이용해주세요.");
             }
         }
 
@@ -662,7 +696,7 @@
             const provider = getSelectedMapProvider();
 
             if (!locationInput) {
-                alert("찾으실 지역명(예: 역삼동, 마포구)을 입력해주세요!");
+                showAlert("찾으실 지역명(예: 역삼동, 마포구)을 입력해주세요!");
                 return;
             }
 
