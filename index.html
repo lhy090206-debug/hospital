@@ -10,10 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: #f0f4f8;
+            -webkit-tap-highlight-color: transparent;
         }
         .step-transition {
             transition: all 0.3s ease-in-out;
@@ -27,7 +29,6 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between text-gray-800">
 
-    <!-- Header -->
     <header class="bg-white border-b border-gray-200 py-4 px-6 sticky top-0 z-50 shadow-sm no-print">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -40,66 +41,64 @@
         </div>
     </header>
 
-    <!-- Main Container -->
     <main class="flex-grow flex items-center justify-center px-4 py-8">
         <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden print-card">
             
-            <!-- Progress Bar (No Print) -->
+            <!-- 진행 상태 표시바 (인쇄 제외) -->
             <div class="bg-gray-100 h-2 w-full no-print">
                 <div id="progressBar" class="bg-blue-600 h-2 w-1/4 transition-all duration-300"></div>
             </div>
 
-            <!-- Content Area -->
+            <!-- 메인 컨테이너 영역 -->
             <div class="p-6 md:p-10">
-                <!-- Legal Disclaimer (Always Visible for safety) -->
+                <!-- 법적 주의사항 (안전을 위해 상시 노출) -->
                 <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl mb-6 text-xs text-red-800 leading-relaxed no-print">
-                    <p class="font-bold mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 의료법 관련 주의사항</p>
-                    본 서비스는 의료 진단이나 실제 의사 처방을 대체할 수 없는 가상 분석기입니다. 안내된 약품 정보는 일반의약품 성분 가이드라인이며, 상태가 심각하거나 지속될 경우 반드시 전문 의료기관을 방문하십시오.
+                    <p class="font-bold mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> 의료법 관련 핵심 주의사항</p>
+                    본 서비스는 의료 진단이나 실제 의사의 처방전을 대체할 수 없는 가상 자가 분석 시뮬레이터입니다. 추천 약품은 약국에서 처방전 없이 구매할 수 있는 일반의약품 성분 가이드라인이며, 상태가 심각하거나 비상 상황일 때는 반드시 즉시 119를 부르거나 가까운 병원에 방문하십시오.
                 </div>
 
-                <!-- FORM MULTI-STEP -->
                 <div id="formSection" class="no-print">
                     
-                    <!-- STEP 1: 아픈 부위 선택 -->
+                    <!-- STEP 1: 아픈 신체 부위 카드형 선택 -->
                     <div id="step1" class="step-transition">
                         <div class="mb-6">
                             <span class="text-xs font-semibold text-blue-600 tracking-wider uppercase">Step 01 / 03</span>
                             <h2 class="text-2xl font-bold mt-1 text-gray-900">가장 불편한 신체 부위가 어디인가요?</h2>
-                            <p class="text-gray-500 text-sm mt-1">상태가 진행 중인 주요 부위 한 곳을 선택해 주세요.</p>
+                            <p class="text-gray-500 text-sm mt-1">자가분석을 시작할 중심 부위를 1곳 선택해주세요.</p>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4 mb-8">
-                            <!-- Card: Head -->
+                            <!-- 머리 / 얼굴 -->
                             <button onclick="selectBodyPart('head')" id="btn-head" class="body-part-card border-2 border-gray-200 hover:border-blue-500 rounded-xl p-4 flex flex-col items-center text-center transition-all bg-white hover:bg-blue-50/30">
                                 <div class="bg-blue-50 text-blue-600 p-3 rounded-full mb-3"><i class="fa-solid fa-head-side-virus text-2xl"></i></div>
                                 <span class="font-bold text-gray-800">머리 / 얼굴</span>
                                 <span class="text-xs text-gray-500 mt-1">두통, 어지러움, 치통</span>
                             </button>
-                            <!-- Card: Chest -->
+                            <!-- 목 / 가슴 / 호흡기 -->
                             <button onclick="selectBodyPart('chest')" id="btn-chest" class="body-part-card border-2 border-gray-200 hover:border-blue-500 rounded-xl p-4 flex flex-col items-center text-center transition-all bg-white hover:bg-blue-50/30">
                                 <div class="bg-blue-50 text-blue-600 p-3 rounded-full mb-3"><i class="fa-solid fa-lungs text-2xl"></i></div>
                                 <span class="font-bold text-gray-800">목 / 가슴 / 호흡기</span>
                                 <span class="text-xs text-gray-500 mt-1">기침, 인후통, 흉통</span>
                             </button>
-                            <!-- Card: Abdomen -->
+                            <!-- 배 / 소화기 -->
                             <button onclick="selectBodyPart('stomach')" id="btn-stomach" class="body-part-card border-2 border-gray-200 hover:border-blue-500 rounded-xl p-4 flex flex-col items-center text-center transition-all bg-white hover:bg-blue-50/30">
-                                <div class="bg-blue-50 text-blue-600 p-3 rounded-full mb-3"><i class="fa-solid fa-stomach text-2xl text-blue-600"></i></div>
+                                <div class="bg-blue-50 text-blue-600 p-3 rounded-full mb-3"><i class="fa-solid fa-stomach text-2xl"></i></div>
                                 <span class="font-bold text-gray-800">배 / 소화기</span>
                                 <span class="text-xs text-gray-500 mt-1">복통, 체함, 소화불량, 설사</span>
                             </button>
-                            <!-- Card: Limbs -->
+                            <!-- 팔 / 다리 / 관절 -->
                             <button onclick="selectBodyPart('limb')" id="btn-limb" class="body-part-card border-2 border-gray-200 hover:border-blue-500 rounded-xl p-4 flex flex-col items-center text-center transition-all bg-white hover:bg-blue-50/30">
                                 <div class="bg-blue-50 text-blue-600 p-3 rounded-full mb-3"><i class="fa-solid fa-bone text-2xl"></i></div>
                                 <span class="font-bold text-gray-800">팔 / 다리 / 관절</span>
                                 <span class="text-xs text-gray-500 mt-1">근육통, 삠, 타박상, 상처</span>
                             </button>
-                            <!-- Card: Skin -->
+                            <!-- 피부 -->
                             <button onclick="selectBodyPart('skin')" id="btn-skin" class="body-part-card border-2 border-gray-200 hover:border-blue-500 rounded-xl p-4 flex flex-col items-center text-center transition-all bg-white hover:bg-blue-50/30">
                                 <div class="bg-blue-50 text-blue-600 p-3 rounded-full mb-3"><i class="fa-solid fa-hand-dots text-2xl"></i></div>
                                 <span class="font-bold text-gray-800">피부 / 전신</span>
                                 <span class="text-xs text-gray-500 mt-1">가려움, 발진, 두드러기</span>
                             </button>
-                            <!-- Card: General -->
+                            <!-- 기타 / 전신 몸살 -->
                             <button onclick="selectBodyPart('general')" id="btn-general" class="body-part-card border-2 border-gray-200 hover:border-blue-500 rounded-xl p-4 flex flex-col items-center text-center transition-all bg-white hover:bg-blue-50/30">
                                 <div class="bg-blue-50 text-blue-600 p-3 rounded-full mb-3"><i class="fa-solid fa-thermometer text-2xl"></i></div>
                                 <span class="font-bold text-gray-800">기타 / 몸살</span>
@@ -114,13 +113,12 @@
                         </div>
                     </div>
 
-
-                    <!-- STEP 2: 통증 양상 및 상황 선택 -->
+                    <!-- STEP 2: 통증 형태 및 발생 상황 설정 -->
                     <div id="step2" class="hidden step-transition">
                         <div class="mb-6">
                             <span class="text-xs font-semibold text-blue-600 tracking-wider uppercase">Step 02 / 03</span>
-                            <h2 class="text-2xl font-bold mt-1 text-gray-900">어떤 종류의 통증이며 어떤 상황인가요?</h2>
-                            <p class="text-gray-500 text-sm mt-1">통증을 가장 잘 설명하는 항목을 선택해 주세요.</p>
+                            <h2 class="text-2xl font-bold mt-1 text-gray-900">어떤 느낌이며 어떤 상황이었나요?</h2>
+                            <p class="text-gray-500 text-sm mt-1">가장 가까운 상태를 각각 하나씩 골라주세요.</p>
                         </div>
 
                         <!-- 통증 형태 선택 (단일 선택) -->
@@ -138,7 +136,7 @@
 
                         <!-- 발생 상황 (단일 선택) -->
                         <div class="mb-8">
-                            <label class="block text-sm font-bold text-gray-700 mb-2">증상이 발생하게 된 상황</label>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">증상이 발생하게 된 주된 원인/상황</label>
                             <div class="grid grid-cols-2 gap-2" id="situationContainer">
                                 <button type="button" onclick="selectSituation(event, 'sudden')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">⏱️ 예고 없이 갑자기 발생</button>
                                 <button type="button" onclick="selectSituation(event, 'exercise')" class="sit-btn py-2.5 px-4 rounded-lg text-sm font-medium border border-gray-300 text-gray-700 bg-white hover:bg-gray-50">🏃 운동이나 격렬한 활동 중</button>
@@ -159,16 +157,15 @@
                         </div>
                     </div>
 
-
-                    <!-- STEP 3: 동반 증상 및 상세 설명 -->
+                    <!-- STEP 3: 기타 세부내역 입력 -->
                     <div id="step3" class="hidden step-transition">
                         <div class="mb-6">
                             <span class="text-xs font-semibold text-blue-600 tracking-wider uppercase">Step 03 / 03</span>
-                            <h2 class="text-2xl font-bold mt-1 text-gray-900">동반되는 다른 불편함이 있나요?</h2>
-                            <p class="text-gray-500 text-sm mt-1">상세한 설명은 더 정확한 정보를 분석하는 데 큰 도움이 됩니다.</p>
+                            <h2 class="text-2xl font-bold mt-1 text-gray-900">동반되는 다른 증상이 더 있나요?</h2>
+                            <p class="text-gray-500 text-sm mt-1">추가 요소를 선택하고 더 자유롭게 적어주시면 정확한 정보 탐색에 도움을 드립니다.</p>
                         </div>
 
-                        <!-- 동반 증상 체크박스 -->
+                        <!-- 동반 증상 멀티 체크박스 -->
                         <div class="mb-6">
                             <label class="block text-sm font-bold text-gray-700 mb-2">동반 증상 (중복 선택 가능)</label>
                             <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -182,7 +179,7 @@
                                 </label>
                                 <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg cursor-pointer bg-white hover:bg-gray-50">
                                     <input type="checkbox" value="nausea" class="extra-symptom-chk h-4 w-4 text-blue-600 rounded">
-                                    <span class="text-sm font-medium text-gray-700">구토 / 미식거림</span>
+                                    <span class="text-sm font-medium text-gray-700">구토 / 메스꺼움</span>
                                 </label>
                                 <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg cursor-pointer bg-white hover:bg-gray-50">
                                     <input type="checkbox" value="dizzy" class="extra-symptom-chk h-4 w-4 text-blue-600 rounded">
@@ -199,10 +196,10 @@
                             </div>
                         </div>
 
-                        <!-- 추가 상세 서술형 -->
+                        <!-- 텍스트 기술란 -->
                         <div class="mb-8">
-                            <label for="detailText" class="block text-sm font-bold text-gray-700 mb-2">기타 상세히 적어주실 부분</label>
-                            <textarea id="detailText" rows="3" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" placeholder="예: '왼쪽 무릎 옆부분이 붉게 부어오르고 무거운 물건을 들 때마다 찌르르 아파요.'"></textarea>
+                            <label for="detailText" class="block text-sm font-bold text-gray-700 mb-2">기타 추가적인 주관식 상태 기술</label>
+                            <textarea id="detailText" rows="3" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm" placeholder="예: '어제 무거운 장바구니를 든 이후로 허리 좌측이 당기는 것 같아요.'"></textarea>
                         </div>
 
                         <div class="flex justify-between">
@@ -210,7 +207,7 @@
                                 <i class="fa-solid fa-arrow-left"></i> <span>이전 단계</span>
                             </button>
                             <button onclick="generatePrescription()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-8 rounded-xl flex items-center space-x-2 shadow-lg transition-all transform hover:-translate-y-0.5">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> <span>분석 결과 분석하기</span>
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> <span>가상 처방가이드 분석</span>
                             </button>
                         </div>
                     </div>
@@ -226,90 +223,91 @@
                                 <h2 class="text-3xl font-extrabold text-blue-700 flex items-center">
                                     <i class="fa-solid fa-receipt mr-3"></i>가상 스마트 처방 가이드
                                 </h2>
-                                <p class="text-gray-500 text-sm mt-1">자가 질문 결과에 따른 정보 제공 요약본</p>
+                                <p class="text-gray-500 text-sm mt-1">사용자 인풋 데이터 기반 매칭 가이드라인 요약</p>
                             </div>
                             <div class="mt-4 md:mt-0 text-left md:text-right text-xs text-gray-500">
-                                <p><strong>처방 발행일:</strong> <span id="currentDate"></span></p>
-                                <p><strong>참조 코드:</strong> MD-GASANG-991</p>
+                                <p><strong>참조 일시:</strong> <span id="currentDate"></span></p>
+                                <p><strong>상태 코드:</strong> MD-GUIDE-303</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 환자 증상 개요 -->
+                    <!-- 환자 입력 데이터 요약 -->
                     <div class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <h3 class="text-sm font-bold text-gray-600 uppercase tracking-wide mb-2"><i class="fa-solid fa-user-tag mr-1"></i> 확인된 증상 정보 요약</h3>
-                        <p class="text-gray-800 text-base leading-relaxed" id="symptomSummaryText"></p>
+                        <h3 class="text-sm font-bold text-gray-600 uppercase tracking-wide mb-2"><i class="fa-solid fa-user-tag mr-1"></i> 확인된 자가 증상</h3>
+                        <p class="text-gray-800 text-base leading-relaxed whitespace-pre-line" id="symptomSummaryText"></p>
                     </div>
 
-                    <!-- AI 분석 의견 -->
+                    <!-- 자가진단 분석 의견 -->
                     <div class="mb-6">
                         <h3 class="text-base font-bold text-gray-800 mb-2 flex items-center">
-                            <i class="fa-solid fa-stethoscope text-blue-600 mr-2"></i> 자가증상 판정 의견
+                            <i class="fa-solid fa-stethoscope text-blue-600 mr-2"></i> 자가 의심 요인 판정
                         </h3>
                         <div class="bg-blue-50 text-blue-900 p-5 rounded-xl border border-blue-100 leading-relaxed text-sm md:text-base">
                             <p id="analysisOpinion"></p>
                         </div>
                     </div>
 
-                    <!-- 가상 약품 처방 리스트 -->
+                    <!-- 약물 복용법 추천 가이드 -->
                     <div class="mb-6">
                         <h3 class="text-base font-bold text-gray-800 mb-2 flex items-center">
-                            <i class="fa-solid fa-pills text-teal-600 mr-2"></i> 가상 추천 일반의약품 (처방전 대체 가이드)
+                            <i class="fa-solid fa-pills text-teal-600 mr-2"></i> 추천 일반의약품(OTC) 정보
                         </h3>
                         <div class="bg-emerald-50 text-emerald-950 p-5 rounded-xl border border-emerald-100">
-                            <p class="font-bold text-base text-emerald-800 mb-2"><i class="fa-solid fa-capsules mr-1.5"></i> 추천 성분 / 계열:</p>
+                            <p class="font-bold text-base text-emerald-800 mb-2"><i class="fa-solid fa-capsules mr-1.5"></i> 권장되는 성분 계열:</p>
                             <p id="recommendedDrugName" class="text-lg font-extrabold text-gray-900 ml-1 mb-4"></p>
                             
-                            <p class="font-bold text-sm text-emerald-800 mb-1"><i class="fa-solid fa-clock-rotate-left mr-1.5"></i> 표준 복용법 및 안전 대처:</p>
+                            <p class="font-bold text-sm text-emerald-800 mb-1"><i class="fa-solid fa-clock-rotate-left mr-1.5"></i> 복용 및 대처 주의사항:</p>
                             <p id="recommendedUsage" class="text-sm text-gray-700 ml-1 leading-relaxed"></p>
                         </div>
                     </div>
 
-                    <!-- 추천 진료과 및 가이드라인 -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <!-- 진료과 -->
                         <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 flex flex-col justify-between">
                             <div>
-                                <h4 class="font-bold text-indigo-900 text-sm mb-1"><i class="fa-solid fa-hospital mr-1.5"></i> 방문 요망 의료 진료과</h4>
+                                <h4 class="font-bold text-indigo-900 text-sm mb-1"><i class="fa-solid fa-hospital mr-1.5"></i> 방문 권장 의료 과목</h4>
                                 <p id="recommendedDept" class="text-lg font-black text-indigo-700 mt-1"></p>
                             </div>
-                            <span class="text-xs text-indigo-500 mt-3">※ 증상 지속 또는 악화 시 위 전문 진료과 전문의를 찾아가세요.</span>
+                            <span class="text-xs text-indigo-500 mt-3">※ 증상 미완화 또는 악화 시 위 전문 진료과 내원을 강력히 권장합니다.</span>
                         </div>
 
+                        <!-- 레드 플래그(긴급 상황) -->
                         <div class="bg-amber-50 p-4 rounded-xl border border-amber-100 flex flex-col justify-between">
                             <div>
-                                <h4 class="font-bold text-amber-900 text-sm mb-1"><i class="fa-solid fa-shield-halved mr-1.5"></i> 긴급 대피 / 대처 요령</h4>
+                                <h4 class="font-bold text-amber-900 text-sm mb-1"><i class="fa-solid fa-shield-halved mr-1.5"></i> 비상대처(레드플래그) 주의 경고</h4>
                                 <p id="criticalWarning" class="text-sm text-amber-800 mt-1 leading-relaxed"></p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 📍 근처 병원 찾기 (선택사항) -->
+                    <!-- 📍 근처 병원 찾기 (선택사항 추가) -->
                     <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 mb-8 no-print">
                         <h4 class="font-bold text-gray-800 text-sm mb-3 flex items-center justify-between">
-                            <span class="flex items-center"><i class="fa-solid fa-map-location-dot text-blue-600 mr-2"></i> 내 주변 병원 찾기 (선택)</span>
-                            <span class="text-[10px] text-gray-400 font-normal">위치 정보는 저장되거나 전송되지 않습니다.</span>
+                            <span class="flex items-center"><i class="fa-solid fa-map-location-dot text-blue-600 mr-2"></i> 내 주변 병원 탐색 (선택사항)</span>
+                            <span class="text-[10px] text-gray-400 font-normal">본 기능은 외부 맵 서비스로 연결됩니다.</span>
                         </h4>
                         
                         <div class="space-y-4">
-                            <!-- 검색 방식 인터페이스 -->
+                            <!-- 검색 기능 인터페이스 -->
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
-                                <!-- GPS 기반 검색 -->
+                                <!-- 실시간 GPS 검색 -->
                                 <button onclick="searchHospitalGPS()" class="w-full bg-white hover:bg-blue-50 border border-slate-300 hover:border-blue-300 text-slate-700 hover:text-blue-700 font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-sm">
-                                    <i class="fa-solid fa-location-crosshairs text-blue-600"></i> 현 위치 기반으로 검색 (GPS)
+                                    <i class="fa-solid fa-location-crosshairs text-blue-600"></i> 현재 내 위치 기준으로 찾기 (GPS)
                                 </button>
                                 
-                                <!-- 수동 주소 검색 -->
+                                <!-- 수동 주소 입력 -->
                                 <div class="flex gap-2">
-                                    <input type="text" id="manualLocationInput" placeholder="동/구 단위 직접 입력 (예: 역삼동)" class="flex-grow p-3 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
+                                    <input type="text" id="manualLocationInput" placeholder="동/구 명칭 직접 입력 (예: 역삼동)" class="flex-grow p-3 border border-slate-300 rounded-xl text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
                                     <button onclick="searchHospitalManual()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl text-xs whitespace-nowrap transition-all shadow-sm">
                                         검색
                                     </button>
                                 </div>
                             </div>
                             
-                            <!-- 지도 엔진 선택 -->
+                            <!-- 지도 맵 연동 셀렉터 -->
                             <div class="flex items-center justify-center space-x-6 pt-2 border-t border-slate-200/60">
-                                <span class="text-xs text-gray-500">선호하는 지도 서비스:</span>
+                                <span class="text-xs text-gray-500">지정 지도 서비스:</span>
                                 <label class="flex items-center space-x-1.5 cursor-pointer">
                                     <input type="radio" name="mapProvider" value="kakao" checked class="h-3.5 w-3.5 text-blue-600 focus:ring-blue-500">
                                     <span class="text-xs font-semibold text-amber-700">카카오맵</span>
@@ -322,13 +320,13 @@
                         </div>
                     </div>
 
-                    <!-- Action Buttons -->
+                    <!-- 하단 제어 제어 버튼들 -->
                     <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 justify-end border-t border-gray-200 pt-6 no-print">
                         <button onclick="resetApp()" class="border border-gray-300 hover:bg-gray-100 text-gray-700 font-bold py-3 px-6 rounded-xl transition-all">
-                            <i class="fa-solid fa-rotate-left mr-1"></i> 처음으로 돌아가기
+                            <i class="fa-solid fa-rotate-left mr-1"></i> 처음 화면으로
                         </button>
                         <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center space-x-2 shadow transition-all">
-                            <i class="fa-solid fa-print"></i> <span>처방 정보 인쇄 / PDF 저장</span>
+                            <i class="fa-solid fa-print"></i> <span>가이드 PDF 저장 / 인쇄</span>
                         </button>
                     </div>
 
@@ -338,12 +336,11 @@
         </div>
     </main>
 
-    <!-- Custom Modal Alert (No-print) -->
     <div id="customAlert" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 hidden no-print transition-all duration-300">
         <div class="bg-white rounded-2xl p-6 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-all duration-200" id="customAlertBox">
             <div class="flex items-center space-x-3 mb-4 text-red-600">
                 <i class="fa-solid fa-circle-exclamation text-2xl"></i>
-                <h3 class="text-lg font-bold text-gray-900">안내 알림</h3>
+                <h3 class="text-lg font-bold text-gray-900">도움 안내</h3>
             </div>
             <p id="customAlertMessage" class="text-sm text-gray-600 mb-6 leading-relaxed"></p>
             <button onclick="closeCustomAlert()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-md">
@@ -352,26 +349,24 @@
         </div>
     </div>
 
-    <!-- Footer (No Print) -->
+    <!-- 푸터 정보 영역 (인쇄 제외) -->
     <footer class="bg-gray-900 text-gray-400 py-6 text-center text-xs border-t border-gray-800 no-print">
-        <p>© 2026 MediGuide AI. All rights reserved. Designed for study and GitHub pages showcase.</p>
-        <p class="mt-1 text-gray-500">이 웹 사이트는 비영리 목적의 의학 정보 시뮬레이터 프로그램입니다.</p>
+        <p>© 2026 MediGuide AI. All rights reserved. Designed for GitHub Pages free hosting.</p>
+        <p class="mt-1 text-gray-500">본 사이트는 오직 비영리 학술 및 공부 목적으로 시뮬레이팅된 교육용 응용 프로그램입니다.</p>
     </footer>
 
-    <!-- Logic Script -->
     <script>
-        // App State
+        // 전역 상태 변수
         let selectedBodyPart = '';
         let selectedPainType = '';
         let selectedSituation = '';
 
-        // UI Map Elements
         const step1 = document.getElementById('step1');
         const step2 = document.getElementById('step2');
         const step3 = document.getElementById('step3');
         const progressBar = document.getElementById('progressBar');
 
-        // Custom Modal Alert Logic
+        // 커스텀 알림(Modal) 스크립트
         function showAlert(msg) {
             document.getElementById('customAlertMessage').innerText = msg;
             const alertBg = document.getElementById('customAlert');
@@ -394,22 +389,21 @@
         }
 
         function goToStep(step) {
-            // Validation using custom alert
+            // 필수 인풋 유효성 검사 (커스텀 알림 적용)
             if (step === 2 && !selectedBodyPart) {
-                showAlert('불편한 신체 부위를 1개 선택해 주세요!');
+                showAlert('불편한 신체 부위를 최소 1개 지정해 주세요!');
                 return;
             }
             if (step === 3 && (!selectedPainType || !selectedSituation)) {
-                showAlert('통증의 느낌과 발생 상황을 모두 클릭하여 선택해 주세요!');
+                showAlert('통증의 구체적 성향과 발생 상황을 선택 완료해야 합니다!');
                 return;
             }
 
-            // Hide all steps
+            // 전체 비활성화 후 지정 스텝 전환
             step1.classList.add('hidden');
             step2.classList.add('hidden');
             step3.classList.add('hidden');
 
-            // Show selected step & update Progress Bar
             if (step === 1) {
                 step1.classList.remove('hidden');
                 progressBar.style.width = '25%';
@@ -422,27 +416,32 @@
             }
         }
 
+        // 부위 활성화 처리 함수
         function selectBodyPart(part) {
             selectedBodyPart = part;
-            // Update UI feedback on cards
             document.querySelectorAll('.body-part-card').forEach(card => {
                 card.classList.remove('border-blue-600', 'bg-blue-50/50', 'ring-2', 'ring-blue-500');
             });
             const selectedCard = document.getElementById('btn-' + part);
-            selectedCard.classList.add('border-blue-600', 'bg-blue-50/50', 'ring-2', 'ring-blue-500');
+            if (selectedCard) {
+                selectedCard.classList.add('border-blue-600', 'bg-blue-50/50', 'ring-2', 'ring-blue-500');
+            }
         }
 
-        // Fixed Cross-Browser Event Handlers (Passing e explicitly)
         function selectPainType(e, type) {
             selectedPainType = type;
             document.querySelectorAll('.pain-btn').forEach(btn => {
                 btn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
                 btn.classList.add('border-gray-300', 'text-gray-700', 'bg-white');
             });
-            // Safely reference the clicked element across Firefox/Chrome
-            const target = e.currentTarget || e.target;
-            target.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
-            target.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+            
+            // 크로스 브라우저 호환성을 보장하는 올바른 event 타겟 참조 방식
+            const currentEvent = e || window.event;
+            const target = currentEvent.currentTarget || currentEvent.target;
+            if (target) {
+                target.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
+                target.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+            }
         }
 
         function selectSituation(e, sit) {
@@ -451,12 +450,16 @@
                 btn.classList.remove('border-blue-600', 'bg-blue-600', 'text-white');
                 btn.classList.add('border-gray-300', 'text-gray-700', 'bg-white');
             });
-            // Safely reference the clicked element across Firefox/Chrome
-            const target = e.currentTarget || e.target;
-            target.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
-            target.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+            
+            const currentEvent = e || window.event;
+            const target = currentEvent.currentTarget || currentEvent.target;
+            if (target) {
+                target.classList.remove('border-gray-300', 'text-gray-700', 'bg-white');
+                target.classList.add('border-blue-600', 'bg-blue-600', 'text-white');
+            }
         }
 
+        // 스트링 메타 파서
         function getSymptomText(key) {
             const bodyPartsMap = {
                 'head': '머리 / 얼굴', 'chest': '목 / 가슴 / 호흡기', 'stomach': '배 / 소화기',
@@ -489,11 +492,9 @@
         function generatePrescription() {
             progressBar.style.width = '100%';
             
-            // Get Dates
             const now = new Date();
             document.getElementById('currentDate').innerText = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
 
-            // Extra symptoms parse
             const extraSymptoms = [];
             document.querySelectorAll('.extra-symptom-chk:checked').forEach(chk => {
                 const label = chk.nextElementSibling.innerText;
@@ -507,118 +508,116 @@
                 sit: selectedSituation
             });
 
-            // Summary formatting
-            let summaryString = `[부위] ${symptomMeta.part}  |  [양상] ${symptomMeta.pain}  |  [상황] ${symptomMeta.sit}`;
+            let summaryString = `[부위] ${symptomMeta.part}  |  [양상] ${symptomMeta.pain}\n[원인] ${symptomMeta.sit}`;
             if (extraSymptoms.length > 0) {
                 summaryString += `\n[동반증상] ${extraSymptoms.join(', ')}`;
             }
             if (detailTextVal) {
-                summaryString += `\n[추가내용] "${detailTextVal}"`;
+                summaryString += `\n[환자 진술 자료] "${detailTextVal}"`;
             }
             document.getElementById('symptomSummaryText').innerText = summaryString;
 
-            // Algorithm - Data Logic mapping
+            // 로직 매핑용 로컬 변수 초기화
             let opinion = "";
             let drug = "";
             let usage = "";
             let dept = "";
             let warning = "";
 
-            // Dynamic decision system
+            // 매칭 의사결정 제어 분기
             if (selectedBodyPart === 'head') {
                 if (selectedPainType === 'sharp') {
-                    opinion = "머리 한쪽에 찌르는 듯한 극심한 두통이 지속되는 증상입니다. 일시적인 편두통 또는 신경통일 가능성이 높습니다. 스트레스, 호르몬 변화 혹은 혈관 팽창이 원인일 수 있습니다.";
-                    drug = "트리프탄 계열 (전문의약품) 또는 소염진통제 (나프록센 / 이부프로펜)";
-                    usage = "통증의 시작 단계에서 가급적 빨리 이부프로펜 400mg 등을 복용하는 것을 추천하며, 어두운 방에서 조용히 휴식을 취하세요.";
+                    opinion = "머리 우측 또는 편측에 강하게 지르는 듯한 극심한 두통입니다. 스트레스, 호르몬 변동 혹은 일시적인 일차성 편두통일 가능성이 제기됩니다.";
+                    drug = "비스테로이드성 소염진통제 (덱시부프로펜 / 나프록센 등)";
+                    usage = "초기 조짐이 보이는 단계에서 가급적 빨리 덱시부프로펜 300mg 정을 다소 시원한 물과 함께 복용하시고 한동안 빛이 차단된 방에서 숙면을 취해 주세요.";
                     dept = "신경과 또는 마취통증의학과";
-                    warning = "만약 살면서 처음 겪는 수준의 극심한 번개 치는 듯한 두통이거나 언어 마비, 한쪽 팔다리 마비 증상이 오면 즉시 응급실로 가십시오.";
+                    warning = "생애 처음 경험하는 듯한 번개 치는 것 같은 초급성 통증이나 편측 신체 저림, 말이 어눌해지는 구음 장애가 있으면 혈관 응급 상태이므로 지체 없이 즉각 인근 응급실로 방문하셔야 합니다.";
                 } else {
-                    opinion = "전반적으로 머리가 무겁고 욱신거리는 증상입니다. 흔하게 겪는 긴장형 두통이거나 열감이 동반될 경우 초기 몸살/감기 전조일 수 있습니다.";
-                    drug = "아세트아미노펜 (타이레놀)";
-                    usage = "타이레놀 500~650mg 1정 복용 후 충분히 수분을 공급해 주세요. 하루 최대 4,000mg(8정)을 초과하지 마십시오.";
-                    dept = "가정의학과 또는 내과";
-                    warning = "심한 구토, 고열(38.5도 이상)이 동반될 경우 뇌수막염 우려가 있으니 즉시 의사 진료를 권장합니다.";
+                    opinion = "머리가 띠를 두른 듯 무겁고 뻐근하며 욱신거리는 양상입니다. 스트레스로 인해 발생하는 전형적인 긴장성 두통 양태입니다.";
+                    drug = "아세트아미노펜 (타이레놀 등 단일 성분제)";
+                    usage = "타이레놀 500mg 기준 1~2정(성인 기준) 복용하며 간독성 방지를 위해 24시간 동안 절대 술을 마시지 말고 최대 4,000mg을 초과해서는 안 됩니다.";
+                    dept = "가정의학과 또는 일반내과";
+                    warning = "심한 분수 토사, 38.5도 이상의 고열이 두통과 동반되는 경우 뇌막염 가능성을 평가하기 위해 곧바로 진료실을 찾아가야 합니다.";
                 }
             } 
             else if (selectedBodyPart === 'chest') {
                 if (selectedPainType === 'squeezing') {
-                    opinion = "가슴을 쥐어짜거나 무겁게 내리누르는 느낌이 드는 통증입니다. 이 현상은 협심증, 심근경색 등 심혈관 질환이나 식도 경련의 신호일 수 있습니다.";
-                    drug = "일반 약품 복용 보류 요망 (전문의 진단 필수)";
-                    usage = "급격한 통증 발생 시 안정을 취하고 아무 약물이나 섭취하지 말아야 합니다. (필요시 니트로글리세린 수중 보관 환자 제외)";
+                    opinion = "가슴 중앙 혹은 왼쪽 부위가 무겁게 압착되거나 비틀어 쥐어짜는 긴박한 흉부 불쾌감입니다. 이는 관상동맥 허혈성 반응 또는 식도 경련 유인에 준할 수 있습니다.";
+                    drug = "가상 복용 보류 권장 (전문 임상 의학적 접근 필수)";
+                    usage = "가장 안전한 의학적 상태를 보존하기 위해 기성의 복용 약물(스프레이형 니트로글리세린 등) 소지 환자가 아니라면 임의로 약국 일반약을 섭취하는 행동은 삼가십시오.";
                     dept = "순환기내과 또는 흉부외과";
-                    warning = "통증이 왼쪽 어깨나 턱으로 번지거나 식은땀, 호흡 곤란이 동반된다면 즉시 응급 전화를 통해 심장 전문 응급실로 이송되어야 합니다.";
+                    warning = "통증이 목, 왼쪽 등, 턱 부근으로 방사되면서 호흡을 잇기 어렵고 등 뒤로 식은땀이 차면 심근경색 가능성이 있습니다. 지체하지 마시고 119 구급대를 호출해 응급실로 가셔야 합니다.";
                 } else {
-                    opinion = "기침, 목 부음, 콕콕 쑤시는 인후통 느낌이 가슴과 목 쪽에 집중된 경우입니다. 급성 인후두염이나 기관지염 가능성이 큽니다.";
-                    drug = "소염진통제 및 종합감기약 (덱스트로메토르판, 아세트아미노펜 복합제)";
-                    usage = "종합감기약 복용 후 따뜻한 물을 수시로 섭취하고 목을 가습기로 촉촉하게 관리해 주십시오.";
+                    opinion = "기침, 상기도가 붓고 이물감이 있는 가래 끓음 등의 상기도 증세입니다. 급성 인후통 내지 가벼운 감염성 후두염이 강하게 의심됩니다.";
+                    drug = "소염진통제 및 거담 감기약 계열 (아세트아미노펜 + 기침 진해제 복합성분)";
+                    usage = "처방 없는 종합 감기 의약품을 매 식후 30분에 수분과 같이 섭취하세요. 평소 공기가 건조해지지 않게 가습기를 사용해 실내 습도를 관리합니다.";
                     dept = "이비인후과 또는 호흡기내과";
-                    warning = "침 삼키기조차 너무 어렵거나 숨소리에서 쌕쌕거리는 천명음이 들릴 경우 진료를 서두르세요.";
+                    warning = "음식이나 물을 도저히 삼킬 수 없거나 쌕쌕거리는 거친 호흡 소리가 발생하는 경우 상기도 유착 경고로, 속히 의원 검진을 받아야 합니다.";
                 }
             } 
             else if (selectedBodyPart === 'stomach') {
                 if (selectedSituation === 'food' || selectedPainType === 'sharp') {
-                    opinion = "음식물을 섭취한 뒤 위경련, 위염, 혹은 소화불량으로 인해 명치 부근이 찌르거나 콕콕 아픈 현상입니다.";
-                    drug = "제산제 (파모티딘 등) 및 위장운동조절제 (트리메부틴)";
-                    usage = "약국에서 트리메부틴 성분 약품을 구입하여 식전/식후에 처방에 따라 복용하시고 자극적인 음식을 금식하십시오.";
+                    opinion = "음식물 섭취 이후에 명치 부근이 가파르게 통증이 있거나 위벽에 콕콕 아린 자극이 드는 소화 장애 내지 일시적 위경련 상태입니다.";
+                    drug = "위장관 운동 조절제 (트리메부틴) 및 제산제 (파모티딘 성분 등)";
+                    usage = "트리메부틴 복용 시 식전에 1정을 취해 위 운동을 정상화하며, 자극성이 강하거나 뜨겁고 거친 음식을 피하고 당분간 전반적인 금식 혹은 부드러운 죽을 드시길 바랍니다.";
                     dept = "소화기내과";
-                    warning = "아랫배 우하단(오른쪽 밑)의 심한 통증이 있고 눌렀다 뗄 때 극심히 아프다면 충수염(맹장염)일 수 있어 즉시 응급 수술이 필요합니다.";
+                    warning = "오른쪽 아랫배(우하복부)를 손가락으로 꾹 눌렀다가 순간 떼는 타이밍에 날카롭게 유발되는 이른바 반동 압통 현상이 발견된다면 맹장염일 수 있으므로 신속한 외과 판단이 필요합니다.";
                 } else {
-                    opinion = "복부 전반의 설사, 미식거림, 구토를 동반하는 장염 증상에 가깝습니다. 세균성 또는 바이러스성 장점막 염증 증상일 수 있습니다.";
-                    drug = "지사제 (로페라미드 - 설사가 극심할 때만) 및 정장제 (유산균 제제)";
-                    usage = "설사는 체내 독소를 밖으로 내보내는 작용이므로 함부로 지사제를 대량 복용하기보다 전해질(이온음료, 보리차)을 적극 섭취하는 것이 좋습니다.";
+                    opinion = "배가 전체적으로 뒤틀리며 가스가 차고 잦은 묽은 설사, 메스꺼움을 동반하는 급성 카타르성 장 질환 패턴입니다.";
+                    drug = "지사제 (로페라미드 등, 단 설사가 잦아드는 초기에는 신중히 투약) 및 경구 수액제";
+                    usage = "대장 내에서 독소를 자체 배출하고자 일시적으로 유도하는 반응이므로 인위적인 설사 억제제 대량 사용은 자제하고, 탈수 방지를 위해 이온음료 또는 상온의 보리차를 꾸준히 마시며 다독여 주세요.";
                     dept = "내과 또는 가정의학과";
-                    warning = "소변이 전혀 나오지 않거나 심한 탈수, 피가 섞인 설사가 지속되면 수액 치료가 즉시 필요합니다.";
+                    warning = "대변에 거무스름하거나 붉은 혈액 흔적이 선명하게 확인되거나 지속해서 아무것도 넘기지 못해 생기는 극심한 소변량 부진은 위급한 수액 처치가 요구됩니다.";
                 }
             } 
             else if (selectedBodyPart === 'limb') {
                 if (selectedSituation === 'trauma' || selectedPainType === 'sharp') {
-                    opinion = "외상(부딪힘, 넘어짐)으로 인한 근육 미세 파열, 염좌(삠), 혹은 골절 초기 의심 단계입니다.";
-                    drug = "비스테로이드성 소염진통제 (덱시부프로펜) 및 근육이완제, 소독 연고";
-                    usage = "통증 부위에 움직임을 최대한 자제(고정)하고, 다치고 48시간 동안은 얼음찜질(냉찜질)을 15분씩 자주 수행하십시오.";
+                    opinion = "외적인 외부 가해(타격, 접질림, 부딪힘)에 의한 골막 골절 우려 내지는 인대/힘줄 부근의 급격한 근골격계 편차 발생 상태입니다.";
+                    drug = "비스테로이드성 외용 소염 파스 제제 및 이부프로펜 덱시부프로펜 소염소양제";
+                    usage = "급성 염좌 부상이 생긴 직후 약 24~48시간 동안은 온찜질을 금하고 차가운 얼음팩을 수건에 대어 매회 15분 단위로 냉찜질(RICE 기법)을 이어 가야 염증을 잡습니다.";
                     dept = "정형외과 또는 재활의학과";
-                    warning = "뼈 부위의 변형이 눈으로 보이거나 체중을 아예 지탱할 수 없고 만지기만 해도 극심한 고통이 있다면 바로 정형외과 X-ray가 필요합니다.";
+                    warning = "외견상 다리나 팔뼈 혹은 관절의 선형 구조가 휘거나 붓기가 지나쳐 주변 신경이 저리며 다친 쪽 발로 아예 땅을 딛는 디딤 동작이 어렵다면 골절 여부를 위해 정형외과 방사선 촬영(X-ray)이 시급합니다.";
                 } else {
-                    opinion = "특별히 무리한 것 외에 전신적인 뻐근함이나 과로성 근육통(지연발성 근육통) 상태입니다.";
-                    drug = "아세트아미노펜 계열 약물 및 온열 파스(바르는 파스 포함)";
-                    usage = "따뜻한 물로 샤워를 하거나 가벼운 스트레칭 후, 환부에 혈액 순환을 돕는 온찜질과 파스를 부착하세요.";
-                    dept = "가정의학과 또는 정형외과";
-                    warning = "근육이 풀리지 않고 근육 세포가 부서지는 느낌이 들며 콜라색(갈색) 소변이 나오는 경우 횡문근융해증일 수 있으므로 즉시 수액치료를 받아야 합니다.";
+                    opinion = "단순 고부하 육체 근로 및 급성 근지구력 활동 부하로 인해 골격 근섬유에 피로 대사물이 퇴적되어 일어난 지연성 근육통(DOMS) 상태입니다.";
+                    drug = "소염 해열 진통 소염제 및 국소 근육 완화제 성분";
+                    usage = "가벼운 반신욕 또는 따뜻한 수건 찜질(온찜질)을 이용해 뭉친 부위에 충분히 원활한 혈행을 돕고 마사지하며 회복기를 주십시오.";
+                    dept = "정형외과 또는 스포츠의학과";
+                    warning = "근육이 굳어서 풀리지 않는 중에 짙은 콜라 색깔에 가까운 혈뇨(오줌) 반응이 보인다면 근섬유 세포가 괴사해 사구체를 막는 위험한 횡문근융해증 징후이므로 빨리 수액 치료를 개시해야 합니다.";
                 }
             } 
             else if (selectedBodyPart === 'skin') {
-                opinion = "가려움, 두드러기, 가벼운 습진이나 벌레 물림에 따른 급성 알레르기성 피부염 반응으로 예상됩니다.";
-                drug = "2세대 항히스타민제 (세티리진 - 지르텍 등) 및 스테로이드 계열 외용 연고(약국 약사 상담 후 구매)";
-                usage = "항히스타민제 1정을 가급적 취침 전(잠이 올 수 있음) 1일 1회 복용하시고, 긁어서 생기는 2차 감염을 예방하기 위해 손을 깨끗이 씻고 아이스팩으로 열감을 낮추세요.";
+                opinion = "피부 장벽 세포가 국소 접촉 물질이나 알레르겐에 노출되어 야기되는 가려움, 따가움, 홍반성 팽진성 소양 반응 단계입니다.";
+                drug = "2세대 무항히스타민제 (세티리진 염산염 등 - 지르텍 등) 및 순한 하이드로코티손 외용 크림";
+                usage = "약사와의 처방 상담 후 항히스타민제 1정을 가급적 취침 전에 섭취(일부 졸림 유발)하시고 가렵더라도 피부를 세차게 손톱으로 문지르면 상처에 따른 연쇄적 이차 감염이 초래되니 차가운 아이스 파우치를 적용해 진정해 주십시오.";
                 dept = "피부과";
-                warning = "눈꺼풀이나 입술 주변이 갑자기 붓고 숨을 쉴 때 목이 막히는 느낌(아나필락시스 쇼크)이 들면 즉시 에피네프린 투여 및 응급실 행이 필요합니다.";
+                warning = "피부 알레르기 수포 반응 도중에 목 안쪽 기도가 함께 좁아지는 호흡기 질식성 불쾌감, 혹은 눈두덩과 입술이 퉁퉁 붓는 중증 급성 아나필락시스 과민증이 겹치면 주저 말고 가까운 대형병원 응급센터로 직행하십시오.";
             } 
             else {
-                opinion = "전신 오한, 몸살, 전반적인 면역 저하 또는 기후 변화에 의한 피로 누적 증후군 가능성이 높습니다.";
-                drug = "비타민 복합제, 해열진통제 (아세트아미노펜)";
-                usage = "종합 비타민 및 충분한 고단백 식사 후 따뜻하게 숙면을 취하십시오. 필요시 해열진통제를 복용해 열을 조절합니다.";
-                dept = "가정의학과 또는 종합내과";
-                warning = "체온이 39도 이상 올라가면서 의식이 희미해지거나 발진이 동시에 번지기 시작하면 곧바로 큰 병원에 가야 합니다.";
+                opinion = "환절기 피로 혹은 전신 면역 저하로 추정되며 신체의 전반적인 자가 활력이 저하된 전신적 오한/근육 무력화 단계입니다.";
+                drug = "비타민 B/C 보완 영양 소염제 및 복합 해열제 성분";
+                usage = "몸을 따스히 유도할 차 종류를 자주 마시고 영양 보조식을 드신 뒤 온도가 안정적인 공간 내에서 온전히 휴식을 가집니다.";
+                dept = "내과 또는 가정의학과";
+                warning = "열이 39도 벽을 웃돌면서 극도의 의식 저하나 전신 다발성 수포성 구진이 번지면 신속히 응급 검진을 고려합니다.";
             }
 
-            // Apply values to HTML
+            // 마크업 뷰 바인딩
             document.getElementById('analysisOpinion').innerText = opinion;
             document.getElementById('recommendedDrugName').innerText = drug;
             document.getElementById('recommendedUsage').innerText = usage;
             document.getElementById('recommendedDept').innerText = dept;
             document.getElementById('criticalWarning').innerText = warning;
 
-            // Switch Sections
+            // 뷰 스위칭 효과
             document.getElementById('formSection').classList.add('hidden');
             document.getElementById('resultSection').classList.remove('hidden');
         }
 
+        // 초기화 루틴
         function resetApp() {
-            // Reset states
             selectedBodyPart = '';
             selectedPainType = '';
             selectedSituation = '';
 
-            // Reset UI Highlight classes
             document.querySelectorAll('.body-part-card').forEach(card => {
                 card.classList.remove('border-blue-600', 'bg-blue-50/50', 'ring-2', 'ring-blue-500');
             });
@@ -631,24 +630,18 @@
                 btn.classList.add('border-gray-300', 'text-gray-700', 'bg-white');
             });
 
-            // Reset Text Area & Checkboxes
             document.getElementById('detailText').value = '';
             document.querySelectorAll('.extra-symptom-chk').forEach(chk => {
                 chk.checked = false;
             });
-            
-            // Reset Map Input
             document.getElementById('manualLocationInput').value = '';
 
-            // Go to step 1
             goToStep(1);
 
-            // Switch Sections back
             document.getElementById('formSection').classList.remove('hidden');
             document.getElementById('resultSection').classList.add('hidden');
         }
 
-        // Map Service Provider Selection Helper
         function getSelectedMapProvider() {
             const providers = document.getElementsByName('mapProvider');
             for (let i = 0; i < providers.length; i++) {
@@ -659,7 +652,7 @@
             return 'kakao';
         }
 
-        // Search hospital using GPS
+        // 실시간 GPS 기반 주변 지정 병원 검색 인텐트 실행
         function searchHospitalGPS() {
             const deptText = document.getElementById('recommendedDept').innerText || "내과";
             const firstDept = deptText.split(' 또는 ')[0].trim();
@@ -677,6 +670,7 @@
                         window.open(searchUrl, '_blank');
                     },
                     (error) => {
+                        // 권한 에러 시 디폴트 폴백 주소로 카카오/네이버 기본 검색 제공
                         let searchUrl = provider === 'kakao' 
                             ? `https://map.kakao.com/?q=내주변+${encodeURIComponent(firstDept)}`
                             : `https://m.map.naver.com/search.naver?query=내주변+${encodeURIComponent(firstDept)}`;
@@ -684,11 +678,11 @@
                     }
                 );
             } else {
-                showAlert("이 브라우저는 위치 기반 탐색을 지원하지 않습니다. 아래 직접 입력창을 이용해주세요.");
+                showAlert("해당 브라우저는 현재 위치추적 모듈(GPS)을 내장하고 있지 않습니다. 하단 수동검색 창을 직접 기입해 검색해주세요.");
             }
         }
 
-        // Search hospital using manually typed address
+        // 수동 입력어 연계 지정 병원 검색 인텐트 실행
         function searchHospitalManual() {
             const deptText = document.getElementById('recommendedDept').innerText || "내과";
             const firstDept = deptText.split(' 또는 ')[0].trim();
@@ -696,7 +690,7 @@
             const provider = getSelectedMapProvider();
 
             if (!locationInput) {
-                showAlert("찾으실 지역명(예: 역삼동, 마포구)을 입력해주세요!");
+                showAlert("검색 대상이 될 동네 이름이나 지역구 명칭을 정확히 작성해 주세요!");
                 return;
             }
 
